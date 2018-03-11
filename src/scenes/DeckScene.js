@@ -8,11 +8,11 @@ export class DeckScene extends Component {
   }
 
   onPressAdd = () => {
-    
+    this.props.navigation.navigate('AddCardScene')
   }
 
   onPressStart = () => {
-    
+    this.props.navigation.navigate('CardScene')
   }
 
   render() {

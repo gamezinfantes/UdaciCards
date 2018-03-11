@@ -1,53 +1,59 @@
 import React from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import { TabNavigator, StackNavigator } from 'react-navigation';
-import { Constants } from 'expo'
-import { Deck } from './src/components'
-import { DeckScene } from './src/scenes'
-
-const MyStatusBar = ({backgroundColor, ...props}) => {
-  return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
-  )
-}
+import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import { AddCardScene, DeckScene, CardScene, HomeScene } from './src/scenes'
+import { StatusBar } from './src/components'
+import { Provider } from 'react-redux'
+import store from './src/store'
+import getSlideFromRightTransition from 'react-navigation-slide-from-right-transition'
+import Theme from './src/theme'
 
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <MyStatusBar barStyle="light-content" />
+      <Provider store={store}>
         <RootNavigator />
-      </View>
+      </Provider>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
-
-
-const DecksTab = (props) => (
-  <View>
-    {/* { props.decks.map(deck => (
-      <Deck title={deck.title} cardCount={deck.cardCount} />
-    ))} */}
-  </View>
-)
-const Tabs = TabNavigator({
-  Decks: { screen: DecksTab },
-  NewDeck: { screen: DecksTab },
-});
 
 const RootNavigator = StackNavigator({
-  Main: { screen: Tabs },
-  DeckScene: { screen: DeckScene },
+  HomeScene: { 
+    screen: HomeScene,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  DeckScene: { 
+    screen: DeckScene,
+    navigationOptions: {
+      title: "Deck"
+    }
+  },
+  CardScene: { 
+    screen: CardScene,
+    navigationOptions: {
+      title: "Card"
+    }
+  },
+  AddCardScene: { 
+    screen: AddCardScene,
+    navigationOptions: {
+      title: "Add Card",
+    }
+  },
 }, {
-  initialRouteName: 'DeckScene',
+  initialRouteName: 'HomeScene',
+  headerMode: 'screen',
+  transitionConfig: getSlideFromRightTransition,
+  navigationOptions: {
+    headerTintColor: Theme.colors.text,
+    headerStyle: {
+      backgroundColor: Theme.colors.primary,
+    }
+  }
 })
 

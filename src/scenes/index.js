@@ -1,1 +1,5 @@
+export { default as AddCardScene } from './AddCardScene'
+export { default as AddDeck } from './AddDeck'
+export { default as CardScene } from './CardScene'
 export { default as DeckScene } from './DeckScene'
+export { default as HomeScene } from './HomeScene'
