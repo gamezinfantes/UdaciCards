@@ -7,11 +7,12 @@ export default class Deck extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     cardCount: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
     onPress: PropTypes.func,
   }
 
   onPressDeck = () => {
-    this.props.onPress && this.props.onPress();
+    this.props.onPress && this.props.onPress(this.props.id);
   }
 
   render() {

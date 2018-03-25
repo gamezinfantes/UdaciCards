@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Button } from '../components'
 import Theme from '../theme'
 
-export class DeckScene extends Component {
+class CardScene extends Component {
   static propTypes = {
   }
 
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default DeckScene
+export default CardScene

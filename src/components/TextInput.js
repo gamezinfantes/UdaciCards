@@ -2,16 +2,19 @@ import React from 'react'
 import { TextInput, StyleSheet } from 'react-native'
 import Theme from '../theme'
 
-const MyTextInput = (props) => {
-  const { style, ...rest } = props;
-  return (
-    <TextInput
-      onChange={this.onChangeInput}
-      style={[styles.input, style]}
-      underlineColorAndroid="transparent"
-      { ...rest }
-      />
-  )
+class MyTextInput extends React.PureComponent {
+  render() {
+    const { style, ...rest } = this.props;
+
+    return (
+      <TextInput
+        onChange={this.onChangeInput}
+        style={[styles.input, style]}
+        underlineColorAndroid="transparent"
+        { ...rest }
+        />
+    )
+  }
 }
 
 const styles = StyleSheet.create({

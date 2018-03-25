@@ -1,23 +1,36 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Button, TextInput } from '../components'
 
 
 export default class AddDeck extends Component {
+  static propTypes = {
+    addDeck: PropTypes.func.isRequired
+  }
 
-  onChangeInput = () => {
+  state = {
+    deckValue: "eee",
+  }
 
+  onChangeInput = (text) => {
+    this.setState({
+      deckValue: text
+    })
   }
   
   onPressSubmit = () => {
+    this.props.addDeck()
   }
 
   render() {
     return (
       <View style={styles.root}>
         <TextInput
-          onChange={this.onChangeInput}
+          onChangeText={this.onChangeInput}
           style={styles.input}
+          value={this.state.deckValue}
           underlineColorAndroid="transparent"
           />
         <Button title="Submit" primary onPress={this.onPressSubmit} />
@@ -31,3 +44,5 @@ const styles = StyleSheet.create({
     padding: 16,
   },
 })
+
+connect(null)(AddDeck)

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Button } from '../components'
+import { getDeck } from '../ducks/decks/selectors'
 
-export class DeckScene extends Component {
+class DeckScene extends Component {
   static propTypes = {
   }
 
@@ -20,12 +22,10 @@ export class DeckScene extends Component {
       <View style={styles.root}>
         <View style={styles.texts}>
           <Text style={styles.deckTitle}>
-            Cards
-            {/* { this.props.deck.title } */}
+            { this.props.deck.title }
           </Text>
           <Text style={styles.deckCardcount}>
-            3 Cards
-            {/* { this.props.deck.countCards } */}
+            { this.props.deck.questions.length } Cards
           </Text>
         </View>
         <View style={styles.buttons}>
@@ -64,4 +64,6 @@ const styles = StyleSheet.create({
   }
 })
 
-export default DeckScene
+export default connect((state, ownProps) => ({
+  deck: getDeck(state, ownProps.navigation.state.params.deckId)
+}))(DeckScene)

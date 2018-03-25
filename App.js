@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { AddCardScene, DeckScene, CardScene, HomeScene } from './src/scenes'
+import { AddCardScene, DeckScene, CardScene, Decks, AddDeck } from './src/scenes'
 import { StatusBar } from './src/components'
 import { Provider } from 'react-redux'
 import store from './src/store'
@@ -21,12 +21,12 @@ export default class App extends React.Component {
 
 
 const RootNavigator = StackNavigator({
-  HomeScene: { 
-    screen: HomeScene,
-    navigationOptions: {
-      header: null,
-    },
-  },
+  // HomeScene: { 
+  //   screen: HomeScene,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
   DeckScene: { 
     screen: DeckScene,
     navigationOptions: {
@@ -45,8 +45,21 @@ const RootNavigator = StackNavigator({
       title: "Add Card",
     }
   },
+  Decks: {
+    screen: Decks,
+    navigationOptions: {
+      title: "Decks",
+    }
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      title: "Add Deck",
+    },
+    transitionConfig
+  },
 }, {
-  initialRouteName: 'HomeScene',
+  initialRouteName: 'Decks',
   headerMode: 'screen',
   transitionConfig: getSlideFromRightTransition,
   navigationOptions: {
